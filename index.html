@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ремонт техники | Визитка</title>
+  <!-- Font Awesome для иконок -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    /* ---------- Базовые сбросы и шрифты ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+      background: #fafafa;
+      color: #1e1e1e;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ---------- Хедер ---------- */
+    header {
+      background: #ffffff;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #eaeaea;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    .logo {
+      font-size: 2rem;
+      color: #1e1e1e;
+      transition: transform 0.2s;
+    }
+    .logo i {
+      background: #1e1e1e;
+      color: #fff;
+      padding: 8px;
+      border-radius: 50%;
+      font-size: 1.6rem;
+      width: 48px;
+      height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo:hover {
+      transform: scale(1.02);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    nav a {
+      text-decoration: none;
+      color: #1e1e1e;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      transition: color 0.2s, border-bottom 0.2s;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+    }
+    nav a:hover {
+      color: #0055cc;
+      border-bottom-color: #0055cc;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+      background: #ffffff;
+      border-bottom: 1px solid #ececec;
+    }
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+      color: #111;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      color: #555;
+      max-width: 640px;
+      margin: 0 auto 32px;
+    }
+    .btn {
+      display: inline-block;
+      background: #1e1e1e;
+      color: #fff;
+      padding: 14px 40px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background 0.25s, transform 0.15s;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+    }
+    .btn:hover {
+      background: #0055cc;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 85, 204, 0.25);
+    }
+    .btn-outline {
+      background: transparent;
+      color: #1e1e1e;
+      border: 2px solid #1e1e1e;
+      margin-left: 12px;
+    }
+    .btn-outline:hover {
+      background: #1e1e1e;
+      color: #fff;
+      box-shadow: none;
+    }
+
+    /* ---------- Секции общие ---------- */
+    section {
+      padding: 70px 0;
+      border-bottom: 1px solid #ececec;
+    }
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      margin-bottom: 12px;
+      color: #111;
+    }
+    .section-subtitle {
+      color: #666;
+      font-size: 1.1rem;
+      margin-bottom: 44px;
+      max-width: 600px;
+    }
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* ---------- Услуги ---------- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+    .service-card {
+      background: #fff;
+      padding: 32px 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      text-align: center;
+      border: 1px solid #f0f0f0;
+      transition: box-shadow 0.25s, transform 0.2s;
+    }
+    .service-card:hover {
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+      transform: translateY(-6px);
+    }
+    .service-card i {
+      font-size: 2.8rem;
+      color: #1e1e1e;
+      margin-bottom: 16px;
+      background: #f5f5f5;
+      padding: 16px;
+      border-radius: 50%;
+      width: 72px;
+      height: 72px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .service-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .service-card p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    /* ---------- Преимущества ---------- */
+    .advantages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+    .advantage-item {
+      text-align: center;
+      padding: 16px 8px;
+    }
+    .advantage-item i {
+      font-size: 2.4rem;
+      color: #0055cc;
+      margin-bottom: 12px;
+    }
+    .advantage-item h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .advantage-item p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    /* ---------- Контакты ---------- */
+    .contacts-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+      background: #fff;
+      padding: 40px 36px;
+      border-radius: 20px;
+      border: 1px solid #ededed;
+    }
+    .contacts-info {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      flex: 1 1 240px;
+    }
+    .contacts-info .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 1rem;
+      color: #1e1e1e;
+    }
+    .contacts-info .contact-item i {
+      width: 36px;
+      height: 36px;
+      background: #f0f4ff;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #0055cc;
+      font-size: 1.1rem;
+    }
+    .contacts-info .contact-item a {
+      color: #1e1e1e;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contacts-info .contact-item a:hover {
+      color: #0055cc;
+    }
+    .social-links {
+      display: flex;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .social-links a {
+      color: #555;
+      font-size: 1.6rem;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .social-links a:hover {
+      color: #0055cc;
+      transform: scale(1.1);
+    }
+
+    .contacts-form {
+      flex: 1 1 300px;
+    }
+    .contacts-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .contacts-form input,
+    .contacts-form textarea {
+      padding: 14px 18px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: #fafafa;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .contacts-form input:focus,
+    .contacts-form textarea:focus {
+      outline: none;
+      border-color: #0055cc;
+      background: #fff;
+    }
+    .contacts-form textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+    .contacts-form .btn {
+      align-self: flex-start;
+      padding: 12px 36px;
+    }
+
+    /* ---------- Футер ---------- */
+    footer {
+      background: #1e1e1e;
+      color: #aaa;
+      padding: 32px 0;
+      text-align: center;
+      font-size: 0.9rem;
+      border-top: 1px solid #333;
+    }
+    footer a {
+      color: #ddd;
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: #fff;
+    }
+
+    /* ---------- Кнопка "наверх" ---------- */
+    .to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #1e1e1e;
+      color: #fff;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      border: none;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      transform: translateY(20px);
+      pointer-events: none;
+      z-index: 200;
+    }
+    .to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .to-top:hover {
+      background: #0055cc;
+    }
+
+    /* ---------- Адаптивность ---------- */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .header-inner {
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+      }
+      nav ul {
+        gap: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      nav a {
+        font-size: 0.9rem;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      }
+      .advantages-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .contacts-wrap {
+        flex-direction: column;
+        padding: 28px 20px;
+      }
+      .contacts-form .btn {
+        align-self: stretch;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 50px 0 40px;
+      }
+      .hero h1 {
+        font-size: 1.9rem;
+      }
+      .btn {
+        padding: 12px 28px;
+        font-size: 0.95rem;
+        display: block;
+        width: 100%;
+        margin: 6px 0;
+      }
+      .btn-outline {
+        margin-left: 0;
+      }
+      .advantages-grid {
+        grid-template-columns: 1fr;
+      }
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .service-card i {
+        width: 56px;
+        height: 56px;
+        font-size: 2rem;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Хедер -->
+  <header>
+    <div class="container header-inner">
+      <div class="logo">
+        <i class="fas fa-microchip"></i>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#advantages">Преимущества</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="container">
+      <h1>Ремонт техники <br />любой сложности</h1>
+      <p>Быстро, качественно, с гарантией. Чиним смартфоны, ноутбуки, планшеты и другую электронику.</p>
+      <div>
+        <a href="#contacts" class="btn">Связаться</a>
+        <a href="#services" class="btn btn-outline">Наши услуги</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Услуги -->
+  <section id="services">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Что мы чиним</h2>
+        <p class="section-subtitle">Профессиональный ремонт любой цифровой техники с использованием качественных комплектующих.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <i class="fas fa-mobile-alt"></i>
+          <h3>Смартфоны</h3>
+          <p>Замена экрана, аккумулятора, разъёмов, восстановление после воды.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-laptop"></i>
+          <h3>Ноутбуки</h3>
+          <p>Ремонт материнской платы, клавиатуры, охлаждения, замена матрицы.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-tablet-alt"></i>
+          <h3>Планшеты</h3>
+          <p>Замена стекла, дисплея, аккумулятора, ремонт кнопок и разъёмов.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-headphones"></i>
+          <h3>Наушники и колонки</h3>
+          <p>Ремонт динамиков, замена кабеля, восстановление корпуса и управления.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Преимущества -->
+  <section id="advantages">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Почему выбирают нас</h2>
+        <p class="section-subtitle">Мы ценим ваше время и доверие, поэтому работаем чётко и прозрачно.</p>
+      </div>
+      <div class="advantages-grid">
+        <div class="advantage-item">
+          <i class="fas fa-wrench"></i>
+          <h4>Опыт 10+ лет</h4>
+          <p>Мастерская с многолетней историей и тысячами отремонтированных устройств.</p>
+        </div>
+        <div class="advantage-item">
+          <i class="fas fa-shield-alt"></i>
+          <h4>Гарантия до 1 года</h4>
+          <p>Предоставляем гарантию на все виды работ и комплектующие.</p>
+        </div>
+        <div class="advantage-item">
+          <i class="fas fa-tachometer-alt"></i>
+          <h4>Срочный ремонт</h4>
+          <p>Большинство поломок устраняем за 1–2 часа, в день обращения.</p>
+        </div>
+        <div class="advantage-item">
+          <i class="fas fa-hand-holding-heart"></i>
+          <h4>Честная цена</h4>
+          <p>Фиксированная стоимость без скрытых доплат — называем цену до начала работ.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Контакты -->
+  <section id="contacts">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Свяжитесь с нами</h2>
+        <p class="section-subtitle">Позвоните, напишите или оставьте заявку — мы перезвоним в течение 15 минут.</p>
+      </div>
+      <div class="contacts-wrap">
+        <div class="contacts-info">
+          <div class="contact-item">
+            <i class="fas fa-phone-alt"></i>
+            <a href="tel:+79123456789">+7 (912) 345-67-89</a>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:info@fixtech.ru">info@fixtech.ru</a>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>г. Москва, ул. Тверская, д. 10, оф. 205</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-clock"></i>
+            <span>Ежедневно с 10:00 до 21:00</span>
+          </div>
+          <div class="social-links">
+            <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" aria-label="VK"><i class="fab fa-vk"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="contacts-form">
+          <form id="callbackForm">
+            <input type="text" placeholder="Ваше имя" required />
+            <input type="tel" placeholder="Номер телефона" required />
+            <textarea placeholder="Опишите проблему (необязательно)"></textarea>
+            <button type="submit" class="btn">Отправить заявку</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer>
+    <div class="container">
+      <p>© 2026 Технический сервис. Все права защищены.</p>
+      <p style="margin-top: 6px; font-size: 0.8rem;">
+        <a href="#home">Наверх</a> &middot;
+        <a href="#">Политика конфиденциальности</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Кнопка "наверх" -->
+  <button class="to-top" id="toTopBtn" aria-label="Наверх">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- JS -->
+  <script>
+    // Показываем/скрываем кнопку "наверх"
+    const toTopBtn = document.getElementById('toTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        toTopBtn.classList.add('visible');
+      } else {
+        toTopBtn.classList.remove('visible');
+      }
+    });
+    toTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Плавная прокрутка для навигации (без дополнительных библиотек)
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+        if (target) {
+          const offset = 80; // высота хедера
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Обработка формы (демонстрация)
+    document.getElementById('callbackForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Спасибо! Мы свяжемся с вами в ближайшее время.');
+      this.reset();
+    });
+  </script>
+
+</body>
+</html>
